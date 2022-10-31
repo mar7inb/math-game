@@ -32,6 +32,13 @@ const wrongFormat = [];
 
 // Scroll
 
+// Displays Game Page
+function showGamePage() {
+  gamePage.hidden = false;
+  countdownPage.hidden = true;
+}
+
+
 // Get Random # up to a max #
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -69,6 +76,22 @@ function createEquations() {
   }
   shuffle(equationsArray);
   console.log('equations array:', equationsArray);
+  equationsToDom();
+}
+
+// Add equations to DOM
+function equationsToDom() {
+  equationsArray.forEach((equation) => {
+    // item
+    const item = document.createElement('div');
+    item.classList.add('item');
+    // Equation text
+    const equationText = document.createElement('h1');
+    equationText.textContent = equation.value;
+    // Append
+    item.appendChild(equationText);
+    itemContainer.appendChild(item);
+  });
 }
 
 // Dynamically adding correct/incorrect equations
@@ -106,12 +129,13 @@ function countdownStart() {
   }, 3000);
 }
 
-// Nav. from splash page to countdown page
+// Navigate from splash page to countdown page
 function showCountdown() {
   countdownPage.hidden = false;
   splashPage.hidden = true;
   countdownStart();
   createEquations();
+  setTimeout(showGamePage, 400);
 }
 
 
