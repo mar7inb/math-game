@@ -39,6 +39,17 @@ let finalTimeDisplay = '0.0s';
 // Scroll
 let valueY = 0;
 
+
+// Reset Game
+function playAgain() {
+  gamePage.addEventListener('click', startTimer);
+  scorePage.hidden = true;
+  splashPage.hidden = false;
+  equationsArray = [];
+  playerGuessArray = [];
+  valueY = 0;
+}
+
 // Show Score Page
 function showScorePage(){
   gamePage.hidden = true;
@@ -51,7 +62,7 @@ function scoresToDom(){
   finalTimeDisplay = finalTime.toFixed(1);
   baseTime = timePlayed.toFixed(1);
   penaltyTime = penaltyTime.toFixed(1);
-  baseTimeEl.textContent = `Base Time: ${baseTime}`;
+  baseTimeEl.textContent = `Base Time: ${baseTime}s`;
   penaltyTimeEl.textContent = `Penalty: +${penaltyTime}s`;
   finalTimeEl.textContent = `${finalTimeDisplay}s`;
   showScorePage();
