@@ -256,25 +256,39 @@ function populateGamePage() {
 
 // Displays 3, 2, 1 GO!!
 function countdownStart() {
-  countdown.textContent = '3';
-  setTimeout(() => {
-    countdown.textContent = '2';
-  }, 1000);
-  setTimeout(() => {
-    countdown.textContent = '1';
-  }, 2000);
-  setTimeout(() => {
-    countdown.textContent = 'GO!';
-  }, 3000);
+  let count = 5;
+  countdown.textContent = count;
+  const timeCountDown = setInterval(()=>{
+    count--; 
+    if(count === 0) {
+      countdown.textContent = 'Go';
+    } else if (count === -1) {
+      showGamePage();
+      clearInterval(timeCountDown)
+    } else {
+      countdown.textContent = count
+    }
+    countdown.textContent = count
+  }, 1000)
 }
+//   countdown.textContent = '3';
+//   setTimeout(() => {
+//     countdown.textContent = '2';
+//   }, 1000);
+//   setTimeout(() => {
+//     countdown.textContent = '1';
+//   }, 2000);
+//   setTimeout(() => {
+//     countdown.textContent = 'GO!';
+//   }, 3000);
+// }
 
 // Navigate from splash page to countdown page
 function showCountdown() {
   countdownPage.hidden = false;
   splashPage.hidden = true;
-  countdownStart();
   populateGamePage();
-  setTimeout(showGamePage, 4000);
+  countdownStart();
 }
 
 
