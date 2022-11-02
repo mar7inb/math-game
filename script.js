@@ -39,6 +39,24 @@ let finalTimeDisplay = '0.0s';
 // Scroll
 let valueY = 0;
 
+// Show Score Page
+function showScorePage(){
+  gamePage.hidden = true;
+  scorePage.hidden = false;
+}
+
+
+// Format & Display TIME in DOM
+function scoresToDom(){
+  finalTimeDisplay = finalTime.toFixed(1);
+  baseTime = timePlayed.toFixed(1);
+  penaltyTime = penaltyTime.toFixed(1);
+  baseTimeEl.textContent = `Base Time: ${baseTime}`;
+  penaltyTimeEl.textContent = `Penalty: +${penaltyTime}s`;
+  finalTimeEl.textContent = `${finalTimeDisplay}s`;
+  showScorePage();
+}
+
 
 // Stop Timer, Process Results, go to score page
 function checkTime() {
@@ -57,6 +75,7 @@ function checkTime() {
     });
     finalTime = timePlayed + penaltyTime;
     console.log('time', timePlayed, 'penalty', penaltyTime, 'final:', finalTime);
+    scoresToDom();
   }
 }
 
